@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>403 Forbidden - 萌娘百科_万物皆可萌的百科全书</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="萌娘百科 万物皆可萌的百科全书">
+    <meta name="keywords" content="萌娘,萌娘百科,萌娘百科错误" />
+    <link rel="icon" type="image/png" href="https://img.moegirl.org.cn/favicon.ico" />
+
+    <style>
+        :root {
+            font-size: 16px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        #app {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f9fff8;
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 1rem;
+            width: 100%;
+        }
+
+        #header-container {
+            text-align: center;
+        }
+
+        #header-container img {
+            display: block;
+            margin: 0 auto;
+            width: 320px;
+            max-width: 80vw;
+            height: 320px;
+            max-height: 80vw;
+            border: 0.5rem solid #92c98a;
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 0;
+            padding: 0;
+        }
+
+        #subtitle {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #888;
+        }
+
+        article {
+            text-align: center;
+        }
+
+        footer {
+            padding: 0.5rem 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        a {
+            text-decoration: none;
+            color: #0061fc;
+        }
+
+        a[target="_blank"] {
+            background: none;
+            background-position: center right;
+            background-repeat: no-repeat;
+            background-image: linear-gradient(transparent, transparent), url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2212%22 height=%2212%22%3E %3Cpath fill=%22%23fff%22 stroke=%22%2336c%22 d=%22M1.5 4.518h5.982V10.5H1.5z%22/%3E %3Cpath fill=%22%2336c%22 d=%22M5.765 1H11v5.39L9.427 7.937l-1.31-1.31L5.393 9.35l-2.69-2.688 2.81-2.808L4.2 2.544z%22/%3E %3Cpath fill=%22%23fff%22 d=%22M9.995 2.004l.022 4.885L8.2 5.07 5.32 7.95 4.09 6.723l2.882-2.88-1.85-1.852z%22/%3E %3C/svg%3E");
+            padding-right: 13px;
+            color: #0061fc;
+            text-decoration: none;
+        }
+
+        #dialog-container {
+            text-align: center;
+        }
+
+        #dialog-container #dialog-btn {
+            padding: 0.4rem 0.6rem;
+            outline: none;
+            border: none;
+            border-radius: 0.2rem;
+            background-color: #63a56c;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.125rem;
+        }
+
+        #dialog-container #dialog-btn:hover {
+            background-color: #7ac083;
+        }
+
+        #dialog-container #dialog-btn:active {
+            background-color: #457966;
+        }
+
+        #dialog-container #dialog-btn.angry {
+            background-color: rgb(212, 25, 0);
+        }
+
+        #dialog-container #dialog-content {
+            margin: 1rem 5%;
+            padding: 1rem;
+            background-color: rgba(122, 192, 131, 0.5);
+            border-radius: 0.5rem;
+            border: 1px solid #92c98a;
+        }
+
+        #dialog-container #dialog-content.final {
+            /* color: darkred; */
+            font-size: 2rem;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <header>
+
+        </header>
+
+        <main>
+            <div id="header-container">
+                <img id="girlImg" src="https://s2.loli.net/2022/01/29/zVNY5HEbfD7r1lg.png" alt="">
+                <h1>停下，你太快了</h1>
+                <div id="subtitle">403 Forbidden</div>
+            </div>
+
+
+            <article>
+                <p>您目前看到的是<a href="https://cloud.tencent.com/document/product/627/17470" target="_blank"
+                        rel="nofollow noreferrer noopener">Web应用防火墙(WAF)</a>页面。</p>
+                <p>这是由于您的操作被认为可能对萌娘百科造成危害。</p>
+            </article>
+            <!-- <div id="countdown"></div> -->
+            <div id="dialog-container">
+                <div id="dialog-content">请不要多次刷新网页哟~</div>
+                <button id="dialog-btn">立即修复</button>
+            </div>
+        </main>
+
+        <footer>萌娘百科——万物皆可萌的百科全书</footer>
+    </div>
+
+    <script>
+        (() => {
+            let _state = 0
+            const ASSETS = {
+                cry: 'https://s2.loli.net/2022/01/29/zVNY5HEbfD7r1lg.png',
+                love: 'https://s2.loli.net/2022/02/20/IY9aAdFH8CmEcvu.png',
+                think: 'https://s2.loli.net/2022/02/20/xakA2cU5MQbv4YB.png',
+                angry: 'https://s2.loli.net/2022/02/20/IPqvNiH1EgklsjX.png',
+                kill: 'https://s2.loli.net/2022/02/20/ivAEjfdKHcSCbG3.png',
+            }
+
+            // 将图片资源预加载避免闪烁或延迟
+            const addPreload = (href) => {
+                const link = document.createElement('link')
+                link.rel = 'preload'
+                link.href = href
+                link.as = 'image'
+                document.head.appendChild(link)
+            }
+            for (let key in ASSETS) {
+                addPreload(ASSETS[key])
+            }
+
+            const dialogBtn = document.getElementById('dialog-btn')
+            const dialogContent = document.getElementById('dialog-content')
+            const girlImg = document.getElementById('girlImg')
+            dialogBtn.addEventListener('click', () => {
+                switch (_state) {
+                    case 0:
+                        dialogContent.innerText = '一般来说，稍等几分钟这个限制便会自动解除~'
+                        dialogBtn.innerText = '我现在就要上萌娘百科'
+                        girlImg.src = ASSETS.love
+                        break
+                    case 1:
+                        dialogContent.innerText = '你就再等一等嘛……'
+                        dialogBtn.innerText = '呜呜呜，我的萌百娘'
+                        girlImg.src = ASSETS.think
+                        break
+                    case 2:
+                        dialogBtn.classList.add('angry')
+                        dialogContent.innerText = '喂，你不会是拿萌百娘寻开心吧！'
+                        dialogBtn.innerText = '请勿骚扰萌百娘'
+                        girlImg.src = ASSETS.angry
+                        break
+                    default:
+                        dialogContent.classList.add('final')
+                        dialogContent.innerText = '盯——'
+                        dialogBtn.style.display = 'none'
+                        girlImg.src = ASSETS.kill
+                        break;
+                }
+                _state++
+            })
+        })()
+    </script>
+</body>
+
+</html>

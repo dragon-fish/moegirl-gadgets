@@ -1,0 +1,152 @@
+<div class="mw-parser-output">
+    <style data-mw-deduplicate="TemplateStyles:r4804262">
+        @keyframes show {
+            from {
+                opacity: 0
+            }
+        }
+
+        @keyframes shrink {
+            from {
+                transform: scale(1.15)
+            }
+        }
+
+        @keyframes clear {
+            from {
+                filter: blur(5px)
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: scale(1.3)
+            }
+        }
+
+        @keyframes look-top {
+            from {
+                width: 150%;
+                height: 150%;
+                object-position: center bottom
+            }
+
+            50% {
+                object-position: center top
+            }
+        }
+
+        @keyframes look-bottom {
+            from {
+                width: 150%;
+                height: 150%;
+                object-position: center top
+            }
+
+            50% {
+                object-position: center bottom
+            }
+        }
+
+        .mw-parser-output #toc {
+            background: rgba(250, 250, 250, 0.7)
+        }
+
+        .mw-parser-output .infoBoxContent {
+            background: rgba(251, 251, 251, 0.6)
+        }
+
+        .mw-parser-output .wikitable {
+            background-color: rgba(251, 251, 251, 0.6)
+        }
+    </style>
+    <p>
+        <script>"use strict"; window.RLQ = window.RLQ || []; window.RLQ.push(() => $(() => (async () => { if (+mw.user.options.get("gadget-disableSideBarPic") === 1) { return; } await new Promise((res) => { const i = setInterval(() => { if (document.querySelector("html > body > #content ~ #mw-navigation")) { clearInterval(i); res(); } }, 100); }); console.info(" Widget:SideBarPic pre-init-check", document.querySelector("html > body > #content ~ #mw-navigation")); if ($("body").is(".sideBarPic-executed")) { return; } $("body").addClass("sideBarPic-executed"); const sidebarCharacter = $(".sidebar-character:not(.executed)").addClass("executed").slice(0, 3); if (!sidebarCharacter.length) { return; } await mw.loader.using("mediawiki.Uri"); await Promise.all(sidebarCharacter.find("img").toArray().map((img) => new Promise((res) => { let retryCount = 0; try { const lazyload = new Image(); const url = new mw.Uri(img.dataset.src || img.src); if (url.host.endsWith(".moegirl.org")) { url.host += ".cn"; } lazyload.addEventListener("load", () => { img.src = url; res(); }); lazyload.addEventListener("error", () => { if (retryCount++ < 3) { const url = new mw.Uri(lazyload.src); url.query._ = Math.random(); lazyload.src = url; } else { console.info(" Widget:SideBarPic img-load-failed\n", img.dataset.src); img.remove(); res(); } }); lazyload.src = url; } catch (e) { console.info(" Widget:SideBarPic img-load-failed\n", e); img.remove(); res(); return; } }))); $("body").addClass("sideBarPic"); sidebarCharacter.each((_, ele) => { const self = $(ele); if (!self.find("img")[0]) { return; } console.info(" Widget:SideBarPic append-check\n", document.querySelector("html > body > #content ~ #mw-navigation")); self.appendTo("html > body > #content ~ #mw-navigation").fadeIn().addClass(ele.dataset.align === "top" ? "top" : "bottom").css("user-select", "none"); self.addClass("active").find("img").removeAttr("width").removeAttr("height"); }); $(window).on("resize", () => { sidebarCharacter.each((_, ele) => { const self = $(ele); self.find("img").width(self.width()); }); }).trigger("resize"); if (sidebarCharacter.is('[data-displaylogo="yes"]')) { $("body").addClass("show-logo"); } })()));</script>
+        <style>
+            /* 侧边栏logo或左下角图片添加 */
+            .sidebar-character {
+                position: fixed;
+                left: -3px;
+                z-index: -2;
+            }
+
+            .sidebar-character.top {
+                top: 0;
+            }
+
+            .sidebar-character.bottom {
+                bottom: 0;
+            }
+
+            #wglogo {
+                display: none;
+            }
+
+            @media screen and (max-width: 600px) {
+
+                /* 低像素设备隐藏 */
+                .sidebar-character {
+                    display: none !important;
+                }
+            }
+
+            .sideBarPic.skin-vector:not(.DeceasedPerson) div#mw-panel div.portal {
+                background-color: rgba(246, 246, 246, 0.9);
+                /*padding-top: 0;    top: 212px*/
+                margin-left: -0.75em;
+                margin-right: 0;
+                padding-left: 1.5em;
+                padding-right: .95em;
+            }
+
+            .sideBarPic.skin-vector:not(.DeceasedPerson) div#mw-panel #p-logo+div.portal {
+                padding-top: 1.1em;
+                margin-top: 0;
+            }
+
+            .sideBarPic.skin-vector:not(.DeceasedPerson) #mw-panel div#p-logo {
+                /*background: rgba(246, 246, 246, 0.73);    left: 0;    padding: 0 .5em;    top: -212px*/
+            }
+
+            .sideBarPic:not(.DeceasedPerson) .sidebar-character.active {
+                display: block;
+            }
+
+            .sidebar-character {
+                display: none;
+            }
+
+            body.show-logo:not(.DeceasedPerson) #mw-panel #p-logo {
+                height: 160px;
+            }
+
+            body.show-logo:not(.DeceasedPerson) #mw-panel #p-logo .mw-wiki-logo {
+                background-image: url(https://img.moegirl.org.cn/logo/zhMoegirl15.2.png);
+                height: 160px;
+            }
+
+            .sideBarPic:not(.DeceasedPerson) #footer {
+                background-color: rgba(255, 255, 255, .7);
+            }
+
+            .sideBarPic:not(.DeceasedPerson) #footer #footer-moegirl .copyright {
+                color: #2f2f2f;
+            }
+        </style>
+    </p>
+    <div>
+        <div class="nomobile sidebar-character" style="width:100%; height:100%; top:0; left:0; z-index:-3;"
+            data-displaylogo="yes">
+            <div
+                style="position:fixed; top:0; left:0; width:100%; height:100%; background:transparent; animation:show 2s;">
+            </div><img
+                data-src="https&#58;//img.moegirl.org.cn/common/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg"
+                style="position:fixed; top:0; width:100%; height:100%; object-fit:cover; object-position:center center; animation:show 2s;"
+                srcset="https&#58;//img.moegirl.org.cn/common/thumb/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg/1680px-%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg 1680w,https&#58;//img.moegirl.org.cn/common/thumb/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg/1600px-%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg 1600w,https&#58;//img.moegirl.org.cn/common/thumb/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg/1400px-%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg 1400w,https&#58;//img.moegirl.org.cn/common/thumb/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg/1366px-%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg 1366w,https&#58;//img.moegirl.org.cn/common/thumb/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg/1360px-%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg 1360w,https&#58;//img.moegirl.org.cn/common/thumb/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg/1280px-%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg 1280w,https&#58;//img.moegirl.org.cn/common/thumb/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg/1024px-%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg 1024w,https&#58;//img.moegirl.org.cn/common/thumb/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg/800px-%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg 800w,https&#58;//img.moegirl.org.cn/common/0/0f/%E3%81%82%E3%81%9D%E3%81%B3%E3%81%82%E3%81%9D%E3%81%B0%E3%81%9B.jpg" />
+            <div
+                style="position:fixed; top:0; width:100%; height:100%; background:white; opacity:0; animation:show 2s;">
+            </div>
+        </div>
+    </div>
+</div>

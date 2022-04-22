@@ -1,0 +1,109 @@
+一个提供类似[[mw:Extension:RandomSelection|RandomSelection]]功能的随机显示模板，可以在每次页面刷新时随机显示一段内容。
+
+== 基础用法 ==
+您可以像使用<code><nowiki>{{#choose}}</nowiki></code>一样使用本模板。
+
+; 代码
+<pre>{{Choose|foo|bar|baz}}</pre>
+; 效果
+{{Choose|foo|bar|baz}}
+
+== 选择多个 ==
+您可以使用<code>| count = [正整数]</code>来规定随机挑选的个数。这个数应大于0且小于选项总数。
+
+; 代码
+<pre>{{Choose|count=2|foo|bar|baz}}</pre>
+; 效果
+{{Choose|count=2|foo|bar|baz}}
+
+== 权重选择 ==
+您可以使用<code>| weight-✟ = [正整数]</code>来规定选项“✟”出现的权重。这个数应该是正整数。
+
+; 代码
+<pre>{{Choose|weight-3=999|foo|bar|baz}}</pre>
+; 效果（“baz”出现的概率远高于其他）
+{{Choose|weight-3=999|foo|bar|baz}}
+
+== 复杂案例 ==
+选项的内容物可以是任何东西，甚至可以嵌套另一个{{tl|Choose}}。
+
+; 代码
+<pre>{{Choose
+| 1 =
+'''粗体''' ''斜体'' <del>删除</del> <code>短代码</code> {{Color|red|红色}}
+
+* 一个
+* 无序
+* 列表
+
+: 另一个{{Tl|Choose}}：{{Choose|tag=span|inner-tag=span|foo|bar|baz}}
+}}</pre>
+<!--  -->
+; 效果
+{{Choose
+| 1 =
+'''粗体''' ''斜体'' <del>删除</del> <code>短代码</code> {{Color|red|红色}}
+
+* 一个
+* 无序
+* 列表
+
+: 另一个{{Tl|Choose}}：{{Choose|tag=span|inner-tag=span|foo|bar|baz}}
+}}
+
+== 规定标签 ==
+您可以使用<code>| tag = 标签名</code>以及<code>| inner-tag = 标签名</code>选项分别规定外部和内部元素的标签。这在需要行内元素的场合很有用。
+例如：
+<pre>你真是一个{{Choose|tag=span|inner-tag=span|机智的|愚蠢的}}人。</pre>
+; 效果
+你真是一个{{Choose|tag=span|inner-tag=span|机智的|愚蠢的}}人。
+
+== 最佳实践 ==
+; 您可以使用具名正整数键名来代替匿名传参来传递选项
+如果您想要传递的选项比较多，而每一个都有不同的权重，那么您可以使用具名正整数键名来传递选项，这样更方便得知选项的顺位。例如：
+<pre>{{Choose
+| 1 = 选项1
+| weight-1 = 114514
+| 2 = 选项2
+| weight-2 = 1919810
+| 3 = 选项3
+| weight-3 = 10492
+}}</pre>
+这么做还有另一个好处就是可以防止选项的内容物里存在“=”。
+; 不要拼接 wikitext
+形如下面这种写法是无法正常解析的：
+<pre>[[File:{{Choose|Foo|Bar}}.png]]</pre>
+你可以采用如下写法：
+<pre>{{Choose| [[File:Foo.png]] | [[File:Bar.png]] }}</pre>
+这是由于本模板事实上是使用 JavaScript 来实现的，而不是使用 MediaWiki 原生解析器。
+; 不要尝试使用本模板来实现随机背景图
+形如下面这种写法是无法正常解析的：
+<pre>{{Choose
+| {{背景图片|Foo.png}}
+| {{背景图片|Bar.png}}
+}}</pre>
+（解决方案暂时未定）
+这是由于传递给本模板的全部选项事实上都存在于解析后的 HTML 中，你只是看不见未被挑选到的元素，因此可能导致一些不能重复使用的模板出现错误。
+
+== 全部参数 ==
+
+{| class="wikitable"
+|-
+! 参数 !! 必填 !! 类型 !! 默认值 !! 说明
+|-
+| <code>✟</code><ref name="未知数">此处键名中的“✟”指代任意正整数</ref> || 是 || 任意 || ''（无）'' || 任意键名为数字的参数（以及匿名参数）都被认为是此随机挑选的可选项（与<code><nowiki><option></nowiki></code>语义一致）。
+|-
+| <code>count</code> || 否 || 正整数 || <code>1</code> || 随机挑选的个数。大于0且小于选项总数。
+|-
+| <code>weight-✟</code><ref name="未知数" /> || 否 || 正整数 || <code>1</code> || 选项<code>✟</code>的权重。必须是正整数，小于0的传参将被认为是0，小数点后的内容将被抛弃（<code>1.9</code> → <code>1</code>）。
+|-
+| <code>class</code> || 否 || 字符串 || <code></code>（空） || 外部元素的 CSS 类名
+|-
+| <code>style</code> || 否 || 字符串 || <code></code>（空） || 外部元素的样式
+|-
+| <code>tag</code> || 否 || 字符串 || <code>div</code> || 外部元素的标签名
+|-
+| <code>inner-class</code> || 否 || 字符串 || <code></code>（空） || 内部选项元素的 CSS 类名
+|-
+| <code>inner-tag</code> || 否 || 字符串 || <code>div</code> || 内部选项元素的标签名
+|}

@@ -1,0 +1,79 @@
+# https://zh.moegirl.org.cn/_?curid=490758
+env:
+    browser: true
+    jquery: true
+    es6: true
+    es2020: true
+parserOptions:
+    ecmaVersion: 2020
+globals:
+    mw: readonly
+    mediaWiki: readonly
+    OO: readonly
+    moment: readonly
+    LocalObjectStorage: readonly
+    Cron: readonly
+    $: readonly
+    jQuery: readonly
+extends: "eslint:recommended"
+rules:
+    no-var: error
+    prefer-const: error
+    no-extra-parens: error
+    no-misleading-character-class: error
+    no-template-curly-in-string: error
+    require-atomic-updates: error
+    curly: error
+    indent:
+        - error
+        - 4
+        - SwitchCase: 1
+    linebreak-style: "off"
+    semi:
+        - error
+        - always
+    no-console: "off"
+    no-unused-vars: warn
+    no-redeclare: warn
+    no-unreachable: warn
+    no-inner-declarations: "off"
+    comma-dangle:
+        - warn
+        - always-multiline
+    eqeqeq: error
+    dot-notation: error
+    no-else-return: error
+    no-extra-bind: error
+    no-labels: error
+    no-floating-decimal: error
+    no-lone-blocks: error
+    no-loop-func: error
+    no-magic-numbers: "off"
+    no-multi-spaces: error
+    no-param-reassign: error
+    strict:
+        - error
+        - global
+    quotes:
+        - warn
+        - double
+        - avoidEscape: true
+    quote-props:
+        - warn
+        - as-needed
+        - keywords: true
+          unnecessary: true
+          numbers: false
+    no-empty:
+        - error
+        - allowEmptyCatch: true
+    arrow-spacing:
+        - error
+        - before: true
+          after: true
+    prefer-arrow-callback: error
+    prefer-spread: error
+    prefer-template: error
+    prefer-rest-params: error
+    prefer-exponentiation-operator: error
+    require-await: error

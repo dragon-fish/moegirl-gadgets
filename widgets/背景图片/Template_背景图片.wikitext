@@ -1,0 +1,26 @@
+<includeonly><templatestyles src="Template:背景图片/page.css" />{{#Widget:SideBarPic}}<!--
+-->{{#vardefine:背景图片.isInside|{{filepath:{{{1|{{{url|}}}}}}}}}}<!--
+-->{{array|new|name=widths|1920|1680|1600|1400|1366|1360|1280|1024|800}}<!--
+-->{{#vardefine:背景图片.animate|{{#ifeq:{{{animate|show}}}|none|
+   |animation:{{#vardefineecho:背景图片.animateName|{{#if:{{{animate|}}}
+     |{{#ifeq:{{{animate|}}}|look|look-{{#ifeq:{{{position|}}}|top|bottom|top}}|{{{animate|}}}}}
+     |show}}}} {{{action|{{#switch:{{#var:背景图片.animateName}}|show=2s|shrink=4s ease-out|clear=2s|appear|look|look-top|look-bottom=5s ease|#default=2s}}}}};
+   }}}}<!--
+--><div><!--
+--><div class="nomobile sidebar-character" style="width:100%; height:100%; top:0; left:0; z-index:-3;" data-displaylogo="{{#ifeq:{{{displaylogo|yes}}}|no|no|yes}}"><!--
+--><div style="position:fixed; top:0; left:0; width:100%; height:100%; background:{{{color|transparent}}}; {{#var:背景图片.animate}}"></div><!-- 背景颜色
+--><img data-src="{{#if:{{#var:背景图片.isInside}}|{{#var:背景图片.isInside}}|{{#if:{{{1|{{{url|}}}}}}|{{{1|{{{url|}}}}}}|data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkqAcAAIUAgUW0RjgAAAAASUVORK5CYII=}}}}"
+ style="position:fixed; top:0; width:100%; height:100%; object-fit:cover; object-position:{{{position|center center}}}; {{#var:背景图片.animate}} {{{style|}}}"
+ {{#if:{{#var:背景图片.isInside}}|{{#vardefine:背景图片.maxWidth|{{#invoke:fileInfo|main|{{{1|{{{url|}}}}}}|width}}}}
+    srcset="{{#invoke:loop|main|times=1|{{array|get|widths|count}}|do=<nowiki> 
+        {{#ifexpr:{{array|get|widths|{{#var:times}}}} < {{#var:背景图片.maxWidth}}|
+          {{filepath:{{{1|{{{url|}}}}}}|{{array|get|widths|{{#var:times}}}}}} {{array|get|widths|{{#var:times}}}}w,
+        }}
+      </nowiki>}}{{filepath:{{{1|{{{url|}}}}}}}}
+    "
+ }} /><!-- 图片
+-->{{#if:{{{make|}}}|<div style="position:fixed; top:0; width:100%; height:100%; {{{make|}}}; {{#var:背景图片.animate}}"></div>}}<!-- make
+--><div style="position:fixed; top:0; width:100%; height:100%; background:{{{shadeColor|white}}}; opacity:{{{shade|0}}}; {{#var:背景图片.animate}}"></div><!-- shade
+--></div></div><!--
+-->{{#if:{{{logo-url|}}}|<span id="wglogo" class="nomobile" data-background-position="{{{logo-position|}}}" data-background-size="{{#switch:{{{logo-size|}}}|false|False=|#default={{{logo-size|}}}}}" data-background-image="{{#if:{{filepath:{{PAGENAME:{{{logo-url|ZhMoegirl15.2.png}}}}}}}|{{filepath:{{PAGENAME:{{{logo-url|ZhMoegirl15.2.png}}}}}}}|{{{logo-url|ZhMoegirl15.2.png}}}}}"></span>{{#Widget:Wglogo}}}}<!-- 替换logo
+--></includeonly><noinclude>[[分类:影响页面内容的模板]][[分类:使用模板样式的模板]]{{doc}}</noinclude>

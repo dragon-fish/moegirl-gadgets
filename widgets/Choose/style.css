@@ -1,0 +1,13 @@
+/* 不要显示 random title 控制器 */
+.mgp-choose.mgp-random-title {
+    display: none !important;
+}
+
+/* 默认全隐藏 */
+.mgp-choose > .mgp-choose-option {
+    display: none;
+}
+/* 取消隐藏被选中的项目 */
+.mgp-choose > .mgp-choose-option.mgp-choose-picked {
+    /* display: unset; */
+}
